@@ -1,5 +1,5 @@
 -- 1. Count how many parts in NYC have more than 70 parts on hand
-select Count(parts_nyc.part_number)
+select Count(part_nyc.part_number)
 from part_nyc
 where part_nyc.on_hand>70;
 
