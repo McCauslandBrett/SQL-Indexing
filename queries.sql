@@ -18,15 +18,46 @@ where part_nyc.on_hand>70;
 
 -- 3. List all the suppliers that have more total
 -- on hand parts in NYC than they do in SFO.
-Select S.supplier_name,S.supplier_id
-FROM supplier as S,(
-  Select sfoWITHsum.supplier,sfoWITHsum.partsum
-  FROM (select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
-        from part_sfo
-        group by supplier
-      ) as sfoWITHsum
-    )as result
-where S.supplier_id=result.supplier;
+-- Select S.supplier_name,S.supplier_id
+-- FROM supplier as S,
+--    (Select S.supplier_name,S.supplier_id
+--      from (
+--            Select sfoWITHsum.supplier,sfoWITHsum.partsum
+--            FROM (
+--                   select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
+--                   from part_sfo
+--                   group by supplier
+--                 ) as sfoWITHsum
+--          )as resultsfo,
+--          (
+--           Select sfoWITHsum.supplier,sfoWITHsum.partsum
+--           FROM (
+--                 select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
+--                 from part_sfo
+--                 group by supplier
+--                ) as sfoWITHsum
+--           )as resultnyc
+--       where resultsfo.partsum < resultnyc.partsum
+--       )as result
+-- where S.supplier_id=result.supplier;
+
+Select supplier_name,supplier_id
+FROM
+   (
+    select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
+    from part_sfo,supplier S
+    group by supplier
+    where S.supplier_id=part_sfo.supplier
+
+    ) as sfo_sumIDname,
+    (
+     select part_nyc.supplier,SUM(part_nyc.on_hand) as partsum
+     from part_nyc,supplier S
+     group by supplier
+     where S.supplier_id=part_nyc.supplier
+     ) as nyc_sumIDname
+where sfo_sumIDname.partsum < nyc_sumIDname.partsum;
+
 --       ,
 --
 --       Select nycWITHsum.supplier,nycWITHsum.partsum
