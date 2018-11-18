@@ -22,7 +22,13 @@ Select sfoWITHsum.supplier,sfoWITHsum.partsum
 FROM (select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
       from part_sfo
       group by supplier
-    ) as sfoWITHsum;
+    ) as sfoWITHsum
+
+Select nycWITHsum.supplier,nycWITHsum.partsum
+FROM (select part_nyc.supplier,SUM(part_nyc.on_hand) as partsum
+      from part_nyc
+      group by supplier
+    ) as nycWITHsum;
       -- UNION
       -- select count(*)
       -- from part_nyc,color
