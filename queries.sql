@@ -18,21 +18,22 @@ where part_nyc.on_hand>70;
 
 -- 3. List all the suppliers that have more total
 -- on hand parts in NYC than they do in SFO.
-Select supplier
+Select nycWITHsum.supplier
 FROM (
-Select sfoWITHsum.supplier,sfoWITHsum.partsum
-FROM (select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
-      from part_sfo
-      group by supplier
-    ) as sfoWITHsum
-,
-Select nycWITHsum.supplier,nycWITHsum.partsum
-FROM (select part_nyc.supplier,SUM(part_nyc.on_hand) as partsum
-      from part_nyc
-      group by supplier
-    ) as nycWITHsum
-  ) AS nycJOINsfo
-  where sfoWITHsum.supplier = nycWITHsum.supplier;
+  Select sfoWITHsum.supplier,sfoWITHsum.partsum
+  FROM (select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
+        from part_sfo
+        group by supplier
+      ) as sfoWITHsum
+      ,
+      Select nycWITHsum.supplier,nycWITHsum.partsum
+      FROM (select part_nyc.supplier,SUM(part_nyc.on_hand) as partsum
+        from part_nyc
+        group by supplier
+      ) as nycWITHsum
+    )
+where sfoWITHsum.supplier = nycWITHsum.supplier
+And sfoWITHsum.partsum < nycWITHsum.partsum;
       -- UNION
       -- select count(*)
       -- from part_nyc,color
