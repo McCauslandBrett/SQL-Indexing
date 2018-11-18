@@ -48,7 +48,7 @@ FROM
     from part_sfo
     group by part_sfo.supplier
     -- where S.supplier_id=part_sfo.supplier
-    )
+  ) as result
 --     (
 --      select part_nyc.supplier,SUM(part_nyc.on_hand) as partsum
 --      from part_nyc,supplier S
