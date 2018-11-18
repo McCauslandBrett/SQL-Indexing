@@ -46,14 +46,14 @@ FROM
    (
     select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
     from part_sfo,supplier S
-    group by supplier
+    group by part_sfo.supplier
     where S.supplier_id=part_sfo.supplier
 
     ) as sfo_sumIDname,
     (
      select part_nyc.supplier,SUM(part_nyc.on_hand) as partsum
      from part_nyc,supplier S
-     group by supplier
+     group by part_nyc.supplier
      where S.supplier_id=part_nyc.supplier
      ) as nyc_sumIDname
 where sfo_sumIDname.partsum < nyc_sumIDname.partsum;
