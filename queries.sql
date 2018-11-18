@@ -18,11 +18,11 @@ FROM (select count(*)
 
 -- 3. List all the suppliers that have more total
 -- on hand parts in NYC than they do in SFO.
-select S.supplier_name,S.supplier_id
-from   supplier S , part_nyc nyc, part_sfo sfo
--- where S.supplier_id=
--- where Count(sfo.on_hand)
-Group by S.supplier_name
+-- select S.supplier_name,S.supplier_id
+-- from   supplier S , part_nyc nyc, part_sfo sfo
+-- -- where S.supplier_id=
+-- -- where Count(sfo.on_hand)
+-- Group by S.supplier_name
 -- -- 4. List all suppliers that supply
 -- -- parts in NYC that aren’t supplied by anyone in SFO.
 -- select
