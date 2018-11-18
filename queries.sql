@@ -41,7 +41,7 @@ where part_nyc.on_hand>70;
 --       )as result
 -- where S.supplier_id=result.supplier;
 
-Select supplier_name,supplier_id
+Select nyc_sumIDname.supplier_name,nyc_sumIDname.supplier_id
 FROM
    (
     select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
