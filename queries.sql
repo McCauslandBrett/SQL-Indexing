@@ -44,6 +44,7 @@ where part_nyc.on_hand>70;
 Select sfo_sumIDname.supplier_name,sfo_sumIDname.supplier_id
 FROM
    (
+    Alter table part_sfo.supplier rename to part_sfo.supplier_id
     select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
     from part_sfo,supplier S
     group by part_sfo.supplier,S.supplier_id
