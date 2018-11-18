@@ -25,14 +25,14 @@ from supplier
 where(
         (Select sum(on_hand)
         from supplier S ,part_sfo sfo
-        where S.supplier_id = sfo.supplier;
+        where S.supplier_id = sfo.supplier
         )
         <
         (Select sum(on_hand)
         from supplier S ,part_nyc nyc
-        where S.supplier_id = nyc.supplier;
+        where S.supplier_id = nyc.supplier
         )
-     )
+     );
 -- -- 4. List all suppliers that supply
 -- -- parts in NYC that aren’t supplied by anyone in SFO.
 -- select
