@@ -45,7 +45,7 @@ Select sfo_sumIDname.supplier_name,sfo_sumIDname.supplier_id
 FROM
    (
     select part_sfo.supplier,SUM(part_sfo.on_hand) as partsum
-    from part_sfo,supplier S
+    from part_sfo
     group by part_sfo.supplier
     -- where S.supplier_id=part_sfo.supplier
     ) as sfo_sumIDname
