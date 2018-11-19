@@ -8,12 +8,6 @@ on part_nyc
 using BTREE
 (on_hand);
 
--- create index idx_on_hand
--- on part_sfo
--- using BTREE
--- (on_hand);
-
-
 create index idx_supplier_id
 on supplier
 using BTREE
