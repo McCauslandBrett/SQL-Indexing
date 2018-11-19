@@ -20,19 +20,19 @@ FROM (select count(*)
 -- on hand parts in NYC than they do in SFO.
 -- Select S.supplier_name,S.supplier_id
 -- for every supplier
--- select S.supplier_name, S.supplier_id
--- from supplier S
--- where(
---        (Select sum(on_hand)
---         from part_sfo sfo
---         where S.supplier_id = sfo.supplier
---         )
---         <
---         (Select sum(on_hand)
---         from part_nyc nyc
---         where S.supplier_id = nyc.supplier
---         )
---      );
+select S.supplier_name, S.supplier_id
+from supplier S
+where(
+       (Select sum(on_hand)
+        from part_sfo sfo
+        where S.supplier_id = sfo.supplier
+        )
+        <
+        (Select sum(on_hand)
+        from part_nyc nyc
+        where S.supplier_id = nyc.supplier
+        )
+     );
 -- 4. List all suppliers that supply
 -- parts in NYC that aren’t supplied by anyone in SFO.
 -- select distinct S.supplier_name,S.supplier_id
