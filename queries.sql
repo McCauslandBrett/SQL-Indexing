@@ -26,7 +26,7 @@ where(
        (Select sum(on_hand)
         from part_sfo sfo
         where S.supplier_id = sfo.supplier
-        )
+       )
         <
         (Select sum(on_hand)
         from part_nyc nyc
