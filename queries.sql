@@ -4,7 +4,7 @@ from part_nyc
 where part_nyc.on_hand>70;
 
 -- 2. Count how many total parts on hand, in both NYC and SFO, are Red
--- 
+--
 -- Select t1.count
 -- FROM (select count(*)
 --       from part_sfo,color
