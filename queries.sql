@@ -19,17 +19,17 @@ where part_nyc.on_hand>70;
 -- 3. List all the suppliers that have more total
 -- on hand parts in NYC than they do in SFO.
 -- Select S.supplier_name,S.supplier_id
-
-select supplier.supplier_name, supplier.supplier_id
-from supplier
+-- for every supplier
+select S.supplier_name, S.supplier_id
+from supplier S
 where(
-        (Select sum(on_hand)
-        from supplier S ,part_sfo sfo
+       (Select sum(on_hand)
+        from part_sfo sfo
         where S.supplier_id = sfo.supplier
         )
         <
         (Select sum(on_hand)
-        from supplier S ,part_nyc nyc
+        from part_nyc nyc
         where S.supplier_id = nyc.supplier
         )
      );
