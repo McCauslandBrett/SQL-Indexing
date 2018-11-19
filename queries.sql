@@ -42,8 +42,8 @@ and not exists(select part_number from part_sfo sfo
                 where sfo.part_number=nyc.part_number);
 -- -- 5. Update all of the NYC on hand values to on hand - 10.
 Update part_nyc
-set on_hand =  on_hand - 10
+set on_hand =  on_hand - 10;
 
 -- -- 6. Delete all parts from NYC which have less than 30 parts on hand.
 Delete  from part_nyc
-where on_hand < 30
+where on_hand < 30;
