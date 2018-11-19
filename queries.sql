@@ -35,15 +35,15 @@ where(
      );
 -- 4. List all suppliers that supply
 -- parts in NYC that aren’t supplied by anyone in SFO.
--- select distinct S.supplier_name,S.supplier_id
--- from supplier S, part_nyc nyc
--- where s.supplier_id = nyc.supplier
--- and not exists(select part_number from part_sfo sfo
---                 where sfo.part_number=nyc.part_number);
+select distinct S.supplier_name,S.supplier_id
+from supplier S, part_nyc nyc
+where s.supplier_id = nyc.supplier
+and not exists(select part_number from part_sfo sfo
+                where sfo.part_number=nyc.part_number);
 -- -- -- 5. Update all of the NYC on hand values to on hand - 10.
--- Update part_nyc
--- set on_hand =  on_hand - 10;
+Update part_nyc
+set on_hand =  on_hand - 10;
 --
 -- -- -- 6. Delete all parts from NYC which have less than 30 parts on hand.
--- Delete  from part_nyc
--- where on_hand < 30;
+Delete  from part_nyc
+where on_hand < 30;
