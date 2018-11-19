@@ -33,11 +33,21 @@ where(
         where S.supplier_id = nyc.supplier
         )
      );
--- -- 4. List all suppliers that supply
--- -- parts in NYC that aren’t supplied by anyone in SFO.
--- select
--- from
--- where
+-- 4. List all suppliers that supply
+-- parts in NYC that aren’t supplied by anyone in SFO.
+select S.supplier_name,S.supplier_id
+from supplier S
+where (
+       (select part_number
+        from part_nyc nyc
+        where S.supplier_id=nyc.supplier
+        --and part_number
+        )
+       not in
+       (select part_number
+         from part_sfo sfo
+         where S.supplier_id=sfo.supplier)
+     );
 -- -- 5. Update all of the NYC on hand values to on hand - 10.
 -- select
 -- from
