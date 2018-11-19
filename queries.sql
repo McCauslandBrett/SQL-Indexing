@@ -43,7 +43,7 @@ where (
         where S.supplier_id=nyc.supplier
         --and part_number
         )
-       not in
+       not exists
        (select part_number
          from part_sfo sfo
          where S.supplier_id=sfo.supplier)
