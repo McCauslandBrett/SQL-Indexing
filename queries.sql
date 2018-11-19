@@ -14,7 +14,7 @@ FROM (select count(*)
       from part_nyc,color
       where part_nyc.color=color.color_id and color.color_name='Red'
       )
-      AS t1
+      AS t1;
 
 -- 3. List all the suppliers that have more total
 -- on hand parts in NYC than they do in SFO.
@@ -27,7 +27,7 @@ where(
         from part_sfo sfo
         where S.supplier_id = sfo.supplier
        )
-        <
+      <
         (Select sum(on_hand)
         from part_nyc nyc
         where S.supplier_id = nyc.supplier
