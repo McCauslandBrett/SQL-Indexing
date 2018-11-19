@@ -39,7 +39,7 @@ select distinct S.supplier_name,S.supplier_id
 from supplier S, part_nyc nyc
 where s.supplier_id = nyc.supplier
 and not exists(select part_number from part_sfo sfo
-                where sfo.part_number=nyc.part_number)
+                where sfo.part_number=nyc.part_number);
 -- -- 5. Update all of the NYC on hand values to on hand - 10.
 Update part_nyc
 set on_hand =  on_hand - 10
