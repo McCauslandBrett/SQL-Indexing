@@ -35,7 +35,7 @@ where(
      );
 -- 4. List all suppliers that supply
 -- parts in NYC that aren’t supplied by anyone in SFO.
-select S.supplier_name,S.supplier_id
+select distinct S.supplier_name,S.supplier_id
 from supplier S, part_nyc nyc
 where s.supplier_id = nyc.supplier
 and not exists(select part_number from part_sfo sfo
